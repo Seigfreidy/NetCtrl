@@ -1,5 +1,7 @@
 from enum import Enum
-from connection import Connection
+import sys
+sys.path.append(r'D:\Git\NetCtrl\source')
+# from connection import Connection
 
 class Type(Enum):
     Unknow = 0
@@ -14,7 +16,10 @@ class Vendor(Enum):
     H3c = 3
     Reijie = 4
 
-def createDevice(connection, vendor):
+def createDevice(connection, vendor, type = Type.Unknow):
     if vendor == Vendor.Cisco:
-        from .Cisco import device
+        from Cisco import device
+        return device.Device(connection)
+    if vendor == Vendor.Huawei:
+        from Huawei import device
         return device.Device(connection)

@@ -16,24 +16,23 @@ class SshConnection(connection.Connection):
         self.codetype = "utf-8"
 
     
-    def __exit__(self):
+    def disconnect(self):
         self.ssh_client.close()
-        self.status = connection.connectionStatus.Disconnected
 
     def connect(self):
         self.ssh_client.connect(hostname=self.host,username=self.username,password=self.password,look_for_keys=False)
         print("Successfully login!\n")
-        self.status = connection.connectionStatus.Connected
         self.channel = self.ssh_client.invoke_shell(width = 10000, height = 10000)
     
     def write(self, text):
         self.channel.send(text.encode(self.codetype))
+        time.sleep(0.2)
     
     def read(self):
         data = b""
         while self.channel.recv_ready():
-            data += self.channel.recv(1024)
+            data += self.channel.recv(2048)
             time.sleep(0.1)
-        text = data.decode(self.codetype, "backslashreplace")
+        text = data.decode(self.codetype)
         return text
         

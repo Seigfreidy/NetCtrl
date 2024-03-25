@@ -1,13 +1,22 @@
 import sys
 sys.path.append(r'D:\Git\NetCtrl\source')
+import time
 from user import User
-from device import Device
 from ssh import SshConnection
-import Cisco.showTime
+import Cisco
+import device
 
-user1 = User('cisco','123')
+# user1 = User('cisco','123')
+# connection1 = SshConnection(user1, '192.168.218.151')
+# ciscoSw = device.createDevice(connection1, device.Vendor.Cisco)
+# ciscoSw.login()
+# ciscoSw.showTime()
+# ciscoSw.enterUserMode()
+# ciscoSw.logout()
 
-connection2 = SshConnection(user1, '192.168.218.151')
-CiscoFw = Device(connection2, Device)
-# connection2.connect()
-print(connection2.status)
+
+user2 = User('python','Admin@123')
+connection2 = SshConnection(user2, '192.168.218.201')
+HuaweiSw = device.createDevice(connection2, device.Vendor.Huawei)
+HuaweiSw.login()
+HuaweiSw.showTime()
