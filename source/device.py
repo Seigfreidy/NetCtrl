@@ -1,4 +1,5 @@
 from enum import Enum
+from connection import Connection
 
 class Type(Enum):
     Unknow = 0
@@ -13,9 +14,7 @@ class Vendor(Enum):
     H3c = 3
     Reijie = 4
 
-class Device:
-    def __init__(self, manageIp, type = Type.Unknow, vendor = Vendor.Unknow):
-        self.type = type
-        self.vendor = vendor
-        self.manageIp = manageIp
-
+def createDevice(connection, vendor):
+    if vendor == Vendor.Cisco:
+        from .Cisco import device
+        return device.Device(connection)

@@ -1,5 +1,4 @@
 from enum import Enum
-from device import Device
 from user import User
 
 class connectionStatus(Enum):
@@ -7,7 +6,7 @@ class connectionStatus(Enum):
     Disconnected = 0
 
 class Connection:
-    def __init__(self, user, dev):
+    def __init__(self, user, destinationIp):
         self.user = user
-        self.device = dev
+        self.destinationIp = destinationIp
         self.status = connectionStatus.Disconnected

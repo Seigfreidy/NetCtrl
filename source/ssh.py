@@ -4,11 +4,11 @@ import time
 import paramiko
 
 class SshConnection(connection.Connection):
-    def __init__(self, user, dev, port = 22, timeover = 10):
+    def __init__(self, user, destinationIp, port = 22, timeover = 10):
+        super().__init__(user, destinationIp)
         self.ssh_client = paramiko.SSHClient()
         self.ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        super().__init__(user, dev)
-        self.host = dev.manageIp
+        self.host = destinationIp
         self.port = port
         self.username = user.username
         self.password = user.password
