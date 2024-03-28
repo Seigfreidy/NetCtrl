@@ -30,3 +30,7 @@ class Device:
     def showTime(self):
         self.connection.write('show clock\n')
         print(self.connection.read())
+    
+    def showAllConfig(self):
+        self.connection.write('show running-config\n')
+        print(self.connection.read())       

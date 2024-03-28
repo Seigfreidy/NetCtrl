@@ -3,7 +3,8 @@
 import time
 from user import User
 from ssh import SshConnection
-import Cisco
+# import Cisco
+# import Huawei
 import device
 
 # user1 = User('cisco','123')
@@ -12,14 +13,16 @@ import device
 # ciscoSw.login()
 # ciscoSw.showTime()
 # ciscoSw.enterUserMode()
+# ciscoSw.showAllConfig()
 # ciscoSw.logout()
 
 
 user2 = User('python','Admin@123')
 connection2 = SshConnection(user2, '192.168.218.201')
 HuaweiSw = device.createDevice(connection2, device.Vendor.Huawei)
-HuaweiSw.enterConfigMode()
 HuaweiSw.login()
-HuaweiSw.enterConfigMode()
+DispIf = HuaweiSw.displayInterface()
+DispIf.setEchoLines()
+DispIf.showAllConfig()
+# DisIf.showTime()
 
-# HuaweiSw.showTime()
