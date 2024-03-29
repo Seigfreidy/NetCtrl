@@ -1,8 +1,9 @@
 from enum import Enum
 import sys
 sys.path.append(r'D:\Git\NetCtrl')
-import source.Huawei.userView as userView
-import source.Huawei.systemView as systemView
+import source.device.Huawei.userView as userView
+import source.device.Huawei.systemView as systemView
+import source.device.Huawei.interfaceView as interfaceView
 
 
 class View(Enum):
@@ -42,7 +43,20 @@ class Device:
         elif self.__view__ == View.Interface:
             self.__quit2UpLevelView__()
         self.__view__ = View.System
-        return systemView.systemView(self)
+        return systemView.SystemView(self)
+
+    def interfaceView(self, type, num):
+        if self.__view__ == View.Unknow:
+            self.connection.connect()
+            self.connection.write('n\n')
+        elif self.__view__ == View.User:
+            self.__enterSystemView__()
+        elif self.__view__ == View.System:
+            self.__enterIfView__(type, num)
+        elif self.__view__ == View.Interface:
+            pass
+        self.__view__ = View.Interface
+        return interfaceView.InterfaceView(self, type, num)
 
     def __quit2UserView__(self):
         pass
@@ -52,18 +66,8 @@ class Device:
 
     def __enterSystemView__(self):
         self.connection.write('system-view\n')
-    # def login(self):
-    #     self.connection.connect()
-    #     self.connection.write('n\n')
-    #     print(self.connection.read())
-    
-    # def logout(self):
-    #     self.connection.disconnect()
 
-    # def displayMode(self):
-    #     return display.DisplayMode(self)
-
-    # def configInterface(self):
-    #     self.connection.write('system-view\n')
-    #     print(self.connection.read())
-    #     return config.ConfigInterface(self)
+    def __enterIfView__(self, type, num):
+        command = 'interface '
+        command += type.value + ' 1/0/' + str(num)
+        self.connection.write(command +'\n')

@@ -1,5 +1,4 @@
-# from typing import Any, SupportsIndex
-import connection
+import source.connection.connection as connection
 import time
 import paramiko
 

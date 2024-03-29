@@ -1,9 +1,9 @@
 from enum import Enum
 import sys
 sys.path.append(r'D:\Git\NetCtrl')
-import source.Cisco.user as user
-import source.Cisco.privilege as privilege
-import source.Cisco.globalconfig as globalconfig
+import source.device.Cisco.user as user
+import source.device.Cisco.privilege as privilege
+import source.device.Cisco.globalconfig as globalconfig
 
 class Mode(Enum):
     Unknow = 0

@@ -1,28 +1,26 @@
 import sys
-sys.path.append(r'D:\Git\NetCtrl\source')
+sys.path.append(r'D:\Git\NetCtrl')
 import time
-from user import User
-from ssh import SshConnection
-# import Cisco
-# import Huawei
-import device
+from source.user import User
+from source.connection.ssh import SshConnection
+import source.device.device as device
+from source.device.Huawei import interfaceView as interfaceView
 
-# user1 = User('cisco','123')
-# connection1 = SshConnection(user1, '192.168.218.151')
-# ciscoSw = device.createDevice(connection1, device.Vendor.Cisco)
-# ciscoSw.login()
-# ciscoSw.showTime()
-# ciscoSw.enterUserMode()
-# ciscoSw.showAllConfig()
-# ciscoSw.logout()
+user1 = User('cisco','123')
+connection1 = SshConnection(user1, '192.168.218.151')
+ciscoSw = device.createDevice(connection1, device.Vendor.Cisco)
+usermode = ciscoSw.userMode()
+usermode.showTime()
+usermode.showVersion()
+ciscoSw.privilegeMode()
+ciscoSw.globalConfigMode()
 
 
 user2 = User('python','Admin@123')
 connection2 = SshConnection(user2, '192.168.218.201')
 HuaweiSw = device.createDevice(connection2, device.Vendor.Huawei)
-HuaweiSw.login()
-DispIf = HuaweiSw.displayInterface()
-DispIf.setEchoLines()
-DispIf.showAllConfig()
-# DisIf.showTime()
+userview = HuaweiSw.userView()
+userview.showTime()
+systemview = HuaweiSw.systemView()
+intfaceview = HuaweiSw.interfaceView(interfaceView.Type.Gigabit, 1)
 

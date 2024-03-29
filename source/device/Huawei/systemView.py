@@ -1,6 +1,6 @@
-import device
+import source.device.Huawei.device as device
 
-class systemView():
+class SystemView():
     def __init__(self, device):
         self.device = device
         # self.device.connection.read()
