@@ -1,36 +1,71 @@
 from enum import Enum
+import sys
+sys.path.append(r'D:\Git\NetCtrl')
+import source.Cisco.user as user
+import source.Cisco.privilege as privilege
+import source.Cisco.globalconfig as globalconfig
 
 class Mode(Enum):
     Unknow = 0
-    Basic = 1
-    User = 2
-    Config = 3
+    User = 1
+    Privilege = 2
+    GlobalConfig = 3
 
 class Device:
     def __init__(self, connection):
         self.connection = connection
+        self.__mode__ = Mode.Unknow
 
-    def logout(self):
-        self.connection.disconnect()
+    def userMode(self):
+        if self.__mode__ == Mode.Unknow:
+            self.connection.connect()
+        elif self.__mode__ == Mode.User:
+            pass
+        elif self.__mode__ == Mode.Privilege:
+            self.__quitCurrentMode__()
+        elif self.__mode__ == Mode.GlobalConfig:
+            self.__quitCurrentMode__()
+            self.__quitCurrentMode__()
+        self.__mode__ = Mode.User
+        return user.UserMode(self)
 
-    def login(self):
-        self.connection.connect()
-        print('successfully login to a Cisco device')
-        print(self.connection.read())
+    def privilegeMode(self):
+        if self.__mode__ == Mode.Unknow:
+            self.connection.connect()
+            self.__enterPrivilege__()
+        elif self.__mode__ == Mode.User:
+            self.__enterPrivilege__()
+        elif self.__mode__ == Mode.Privilege:
+            pass
+        elif self.__mode__ == Mode.GlobalConfig:
+            self.__quitCurrentMode__()
+        self.__mode__ = Mode.Privilege
+        return privilege.PrivilegeMode(self)
 
-    def enterUserMode(self):
+    def globalConfigMode(self):
+        if self.__mode__ == Mode.Unknow:
+            self.connection.connect()
+            self.__enterPrivilege__()
+            self.__enterConfig__()
+        elif self.__mode__ == Mode.User:
+            self.__enterPrivilege__()
+            self.__enterConfig__()
+        elif self.__mode__ == Mode.Privilege:
+            self.__enterConfig__()
+        elif self.__mode__ == Mode.GlobalConfig:
+            pass
+        self.__mode__ = Mode.GlobalConfig
+        return globalconfig.GlobalConfigMode(self)
+
+
+
+    def __quitCurrentMode__(self):
+        self.connection.write('quit\n')
+        # print(self.connection.read())
+    
+    def __enterPrivilege__(self):
         self.connection.write('enable\n')
         self.connection.write('123\n')
-        print(self.connection.read())
 
-    def showVersion(self):
-        self.connection.write('show version\n')
-        print(self.connection.read())
-
-    def showTime(self):
-        self.connection.write('show clock\n')
-        print(self.connection.read())
-    
-    def showAllConfig(self):
-        self.connection.write('show running-config\n')
-        print(self.connection.read())       
+    def __enterConfig__(self):
+        self.connection.write('configure terminal\n')
