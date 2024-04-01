@@ -6,7 +6,9 @@ from source.connection.ssh import SshConnection
 import source.device.device as device
 import source.echoOperation.basic as operation
 
-user = User('python','Admin@123')
+# user = User('python','Admin@123')
+user = User()
+user.loginInfoInput()
 connection = SshConnection(user, '192.168.218.201')
 HuaweiSw = device.createDevice(connection, device.Vendor.Huawei)
 userview = HuaweiSw.userView()
