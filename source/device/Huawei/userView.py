@@ -6,11 +6,17 @@ class UserView():
         self.device.connection.read()
         print(self.device.connection.read())
 
-    def showVersion(self):
-        self.device.connection.write('display version\n')
-        print(self.device.connection.read())
+    def setEchoLines(self, num = 0):
+        self.device.connection.write('screen-length ' + str(num) + ' temporary\n')
 
-    def showTime(self):
+    def version(self):
+        self.device.connection.write('display version\n')
+        return self.device.connection.read()
+
+    def time(self):
         self.device.connection.write('display clock\n')
-        print(self.device.connection.read())
-    
+        return self.device.connection.read()
+
+    def currentConfiguration(self):
+        self.device.connection.write('display current-configuration\n')
+        return self.device.connection.read()
