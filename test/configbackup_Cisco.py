@@ -1,10 +1,10 @@
 import sys
-sys.path.append(r'D:\Git\NetCtrl')
+sys.path.append(r'D:\Git')
 
-from source.user import User
-from source.connection.ssh import SshConnection
-import source.device.Cisco.device as device
-import source.echoOperation.basic as operation
+from NetCtrl.source.user import User
+from NetCtrl.source.connection.ssh import SshConnection
+import NetCtrl.source.device.Cisco.device as device
+import NetCtrl.source.echoOperation.basic as operation
 
 user = User('cisco','123')
 connection = SshConnection(user, '192.168.218.141')

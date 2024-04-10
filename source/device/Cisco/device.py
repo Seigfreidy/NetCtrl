@@ -81,12 +81,12 @@ class Device:
 
 def createDevice(connection, type = Type.Unknow, model = Model.Unknow):
     if type == Type.Switch:
-        from NetCtrl.source.device.Cisco import device
-        return device.Device(connection)
+        # from NetCtrl.source.device.Cisco import device
+        return Device(connection)
     elif type == Type.Firewall:
         if model == Model.ASAV:
             from NetCtrl.source.device.Cisco.firewall.asav import asav
             return asav.Asav(connection)
     else:
-        from NetCtrl.source.device.Cisco import device
-        return device.Device(connection)
+        # from NetCtrl.source.device.Cisco import device
+        return Device(connection)

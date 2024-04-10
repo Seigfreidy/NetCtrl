@@ -1,4 +1,4 @@
-import source.device.Huawei.device as device
+import NetCtrl.source.device.Huawei.device as device
 
 class UserView():
     def __init__(self, device):

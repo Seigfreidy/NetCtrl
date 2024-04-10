@@ -7,8 +7,6 @@ import source.device.device as device
 import source.echoOperation.basic as operation
 
 user = User('h3c','h123456789')
-# user = User()
-# user.loginInfoInput()
 connection = SshConnection(user, '192.168.218.171')
 HuaweiSw = device.createDevice(connection, device.Vendor.H3c)
 userview = HuaweiSw.userView()

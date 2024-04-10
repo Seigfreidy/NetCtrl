@@ -1,4 +1,4 @@
-import source.device.Huawei.device as device
+import NetCtrl.source.device.Huawei.device as device
 
 class SystemView():
     def __init__(self, device):
