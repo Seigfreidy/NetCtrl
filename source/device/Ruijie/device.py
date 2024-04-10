@@ -1,27 +1,15 @@
 from enum import Enum
-# import sys
-# sys.path.append(r'D:\Git\NetCtrl')
-# import source.device.device as device
-import NetCtrl.source.device.Cisco.user as user
-import NetCtrl.source.device.Cisco.privilege as privilege
-import NetCtrl.source.device.Cisco.globalconfig as globalconfig
+import sys
+sys.path.append(r'D:\Git\NetCtrl')
+import source.device.Cisco.user as user
+import source.device.Cisco.privilege as privilege
+import source.device.Cisco.globalconfig as globalconfig
 
 class Mode(Enum):
     Unknow = 0
     User = 1
     Privilege = 2
     GlobalConfig = 3
-
-class Type(Enum):
-    Unknow = 0
-    Switch = 1
-    Router = 2
-    Firewall = 3
-
-class Model(Enum):
-    Unknow = 0
-    VIOS = 1
-    ASAV = 2
 
 class Device:
     def __init__(self, connection):
@@ -78,15 +66,3 @@ class Device:
 
     def __enterConfig__(self):
         self.connection.write('configure terminal\n')
-
-def createDevice(connection, type = Type.Unknow, model = Model.Unknow):
-    if type == Type.Switch:
-        from NetCtrl.source.device.Cisco import device
-        return device.Device(connection)
-    elif type == Type.Firewall:
-        if model == Model.ASAV:
-            from NetCtrl.source.device.Cisco.firewall.asav import asav
-            return asav.Asav(connection)
-    else:
-        from NetCtrl.source.device.Cisco import device
-        return device.Device(connection)

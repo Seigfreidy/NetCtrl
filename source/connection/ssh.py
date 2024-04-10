@@ -1,9 +1,10 @@
-import source.connection.connection as connection
+import NetCtrl.source.connection.connection as connection
+# import connection
 import time
 import paramiko
 
 class SshConnection(connection.Connection):
-    def __init__(self, user, destinationIp, port = 22, timeover = 10):
+    def __init__(self, user, destinationIp, codetype = "utf-8", port = 22, timeover = 10):
         super().__init__(user, destinationIp)
         self.ssh_client = paramiko.SSHClient()
         self.ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -12,7 +13,7 @@ class SshConnection(connection.Connection):
         self.username = user.username
         self.password = user.password
         self.timeover = timeover
-        self.codetype = "utf-8"
+        self.codetype = codetype
 
     
     def disconnect(self):
@@ -25,13 +26,13 @@ class SshConnection(connection.Connection):
     
     def write(self, text):
         self.channel.send(text.encode(self.codetype))
-        time.sleep(0.2)
+        time.sleep(1)
     
     def read(self):
         data = b""
         while self.channel.recv_ready():
             data += self.channel.recv(2048)
-            time.sleep(0.1)
+            time.sleep(1)
         text = data.decode(self.codetype)
         return text
         

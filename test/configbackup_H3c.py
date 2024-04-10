@@ -6,14 +6,14 @@ from source.connection.ssh import SshConnection
 import source.device.device as device
 import source.echoOperation.basic as operation
 
-user = User('huawei','Admin@123')
+user = User('h3c','h123456789')
 # user = User()
 # user.loginInfoInput()
-connection = SshConnection(user, '192.168.218.151')
-HuaweiSw = device.createDevice(connection, device.Vendor.Huawei)
+connection = SshConnection(user, '192.168.218.171')
+HuaweiSw = device.createDevice(connection, device.Vendor.H3c)
 userview = HuaweiSw.userView()
 userview.setEchoLines()
 config = userview.currentConfiguration()
 operation.show(config)
-operation.log(config, r'log\huaweilog.txt')
+operation.log(config, r'log\h3clog.txt')
 
