@@ -1,6 +1,6 @@
 from enum import Enum
 import sys
-sys.path.append(r'D:\Git\NetCtrl')
+sys.path.append(r'C:\网络文档\个人文件夹\陈一帆\python\NetCtrl')
 import source.device.Huawei.userView as userView
 import source.device.Huawei.systemView as systemView
 import source.device.Huawei.interfaceView as interfaceView

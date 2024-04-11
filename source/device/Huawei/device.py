@@ -1,6 +1,6 @@
 from enum import Enum
 import sys
-sys.path.append(r'D:\Git')
+sys.path.append(r'C:\网络文档\个人文件夹\陈一帆\python')
 import NetCtrl.source.device.Huawei.userView as userView
 import NetCtrl.source.device.Huawei.systemView as systemView
 import NetCtrl.source.device.Huawei.interfaceView as interfaceView

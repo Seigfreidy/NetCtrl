@@ -1,10 +1,10 @@
 # import sys
 # sys.path.append(r'C:\网络文档\个人文件夹\陈一帆\python\NetCtrl')
 import NetCtrl.source.device.Cisco.device as device
-import NetCtrl.source.device.Cisco.firewall.asav.globalconfig as globalconfig
-import NetCtrl.source.device.Cisco.firewall.asav.privilege as privilege
+import NetCtrl.source.device.Cisco.firewall.firepower.globalconfig as globalconfig
+import NetCtrl.source.device.Cisco.firewall.firepower.privilege as privilege
 
-class Asav(device.Device):
+class Firepower(device.Device):
     def __init__(self, connection):
         super().__init__(connection)
     

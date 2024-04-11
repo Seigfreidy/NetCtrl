@@ -1,6 +1,6 @@
 from enum import Enum
 # import sys
-# sys.path.append(r'D:\Git\NetCtrl')
+# sys.path.append(r'C:\网络文档\个人文件夹\陈一帆\python\NetCtrl')
 # import source.device.device as device
 import NetCtrl.source.device.Cisco.user as user
 import NetCtrl.source.device.Cisco.privilege as privilege
@@ -20,8 +20,12 @@ class Type(Enum):
 
 class Model(Enum):
     Unknow = 0
-    VIOS = 1
-    ASAV = 2
+    # switch
+    Vios = 1
+
+    #firewall
+    Asav = 2
+    Firepower = 3
 
 class Device:
     def __init__(self, connection):
@@ -74,6 +78,8 @@ class Device:
     
     def __enterPrivilege__(self, password):
         self.connection.write('enable\n')
+        if(password == ''):
+            print('empty enable password, fail to enter privilege mode.\n')
         self.connection.write(password +'\n')
 
     def __enterConfig__(self):
@@ -84,9 +90,11 @@ def createDevice(connection, type = Type.Unknow, model = Model.Unknow):
         # from NetCtrl.source.device.Cisco import device
         return Device(connection)
     elif type == Type.Firewall:
-        if model == Model.ASAV:
+        if model == Model.Asav:
             from NetCtrl.source.device.Cisco.firewall.asav import asav
             return asav.Asav(connection)
+        elif model == Model.Firepower:
+            from NetCtrl.source.device.Cisco.firewall.firepower import firepower
+            return firepower.Firepower(connection)
     else:
-        # from NetCtrl.source.device.Cisco import device
         return Device(connection)
