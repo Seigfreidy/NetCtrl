@@ -1,9 +1,9 @@
 from enum import Enum
 import sys
-sys.path.append(r'D:\Git\NetCtrl')
-import source.device.Huawei.userView as userView
-import source.device.Huawei.systemView as systemView
-import source.device.Huawei.interfaceView as interfaceView
+sys.path.append(r'D:\Git')
+import NetCtrl.source.device.Huawei.userView as userView
+import NetCtrl.source.device.Huawei.systemView as systemView
+import NetCtrl.source.device.Huawei.interfaceView as interfaceView
 
 
 class View(Enum):
@@ -12,6 +12,17 @@ class View(Enum):
     System = 2
     Interface = 3
     Protocol = 4
+
+class Type(Enum):
+    Unknow = 0
+    Switch = 1
+    Router = 2
+    Firewall = 3
+
+class Model(Enum):
+    Unknow = 0
+    CE12800 = 1
+
 
 class Device:
     def __init__(self, connection):
@@ -71,3 +82,12 @@ class Device:
         command = 'interface '
         command += type.value + ' 1/0/' + str(num)
         self.connection.write(command +'\n')
+
+
+def createDevice(connection, type = Type.Unknow, model = Model.Unknow):
+    if type == Type.Switch:
+        # from NetCtrl.source.device.Huawei.device import Device
+        return Device(connection)
+    else:
+        # from NetCtrl.source.device.Huawei.device import Device
+        return Device(connection)
