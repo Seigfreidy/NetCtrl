@@ -8,7 +8,3 @@ class PrivilegeMode(privilege.PrivilegeMode):
         self.device.connection.write('terminal pager ' + str(num) + ' \n')
         print(self.device.connection.read())
     
-    # def currentConfiguration(self):
-    #     self.device.connection.write('show running-config\n')
-    #     time.sleep(5)
-    #     return self.device.connection.read()
