@@ -1,5 +1,3 @@
-# import sys
-# sys.path.append(r'D:\Git\NetCtrl')
 import NetCtrl.source.device.Cisco.globalconfig as globalConfigMode
 
 class GlobalConfigMode(globalConfigMode.GlobalConfigMode):

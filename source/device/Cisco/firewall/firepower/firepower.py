@@ -1,5 +1,3 @@
-# import sys
-# sys.path.append(r'D:\Git\NetCtrl')
 import NetCtrl.source.device.Cisco.device as device
 import NetCtrl.source.device.Cisco.firewall.firepower.globalconfig as globalconfig
 import NetCtrl.source.device.Cisco.firewall.firepower.privilege as privilege
