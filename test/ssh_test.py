@@ -6,21 +6,17 @@ from source.connection.ssh import SshConnection
 import source.device.device as device
 from source.device.Huawei import interfaceView as interfaceView
 
-user1 = User('cisco','123')
-connection1 = SshConnection(user1, '192.168.218.151')
-ciscoSw = device.createDevice(connection1, device.Vendor.Cisco)
-usermode = ciscoSw.userMode()
-usermode.showTime()
-usermode.showVersion()
-ciscoSw.privilegeMode()
-ciscoSw.globalConfigMode()
+from NetCtrl.source.user import User
+from NetCtrl.source.connection.ssh import SshConnection
+import NetCtrl.source.device.Huawei.device as device
+import NetCtrl.source.echoOperation.basic as operation
 
-
-user2 = User('python','Admin@123')
-connection2 = SshConnection(user2, '192.168.218.201')
-HuaweiSw = device.createDevice(connection2, device.Vendor.Huawei)
+# user = User('huawei','Admin@123')
+user = User()
+user.loginInfoInput()
+connection = SshConnection(user, '192.168.218.151')
+HuaweiSw = device.createDevice(connection, device.Type.Switch)
 userview = HuaweiSw.userView()
-userview.showTime()
-systemview = HuaweiSw.systemView()
-intfaceview = HuaweiSw.interfaceView(interfaceView.Type.Gigabit, 1)
+
+operation.show(userview.time())
 
