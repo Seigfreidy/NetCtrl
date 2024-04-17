@@ -26,13 +26,13 @@ class SshConnection(connection.Connection):
     
     def write(self, text):
         self.channel.send(text.encode(self.codetype))
-        time.sleep(1)
+        time.sleep(0.1)
     
     def read(self):
         data = b""
         while self.channel.recv_ready():
             data += self.channel.recv(2048)
-            time.sleep(1)
+            time.sleep(0.1)
         text = data.decode(self.codetype)
         return text
         

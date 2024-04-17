@@ -1,0 +1,65 @@
+show running-config
+
+Building configuration...
+Current configuration: 958 bytes
+
+version RG-NSE-Switch(V1.06)
+!
+username admin password ruijie@123
+!
+no cwmp
+!
+install 0 X86
+!
+sysmac 5000.0004.0001
+!
+webmaster level 0 username admin password 7 092e111f2e0b
+!
+no service password-encryption
+!
+redundancy
+!
+no enable service snmp-agent
+ip ssh version 2
+!
+vpdn limit_rate 15
+!
+enable password 123
+enable service ssh-server
+!
+vlan 1
+!
+interface GigabitEthernet 0/0
+!
+interface GigabitEthernet 0/1
+!
+interface GigabitEthernet 0/2
+!
+interface GigabitEthernet 0/3
+!
+interface GigabitEthernet 0/4
+!
+interface GigabitEthernet 0/5
+!
+interface GigabitEthernet 0/6
+!
+interface GigabitEthernet 0/7
+!
+interface GigabitEthernet 0/8
+!
+interface GigabitEthernet 0/9
+!
+interface VLAN 1
+ ip address 192.168.218.161 255.255.255.0
+!
+snmp-server host 192.168.218.131 traps version 2c vanda
+!
+line console 0
+ logging synchronous
+line vty 0 4
+ transport input ssh 
+ logging synchronous
+ login local
+!
+end
+Switch#

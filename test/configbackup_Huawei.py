@@ -13,5 +13,5 @@ userview = HuaweiSw.userView()
 userview.setEchoLines()
 config = userview.currentConfiguration()
 operation.show(config)
-operation.log(config, r'log\huaweilog.txt')
+operation.log(config, r'log\Huaweilog.txt')
 

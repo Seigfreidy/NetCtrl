@@ -11,8 +11,12 @@ connection = SshConnection(user, '192.168.218.141')
 CiscoSw = device.createDevice(connection, device.Type.Switch)
 privilegemode = CiscoSw.privilegeMode('123')
 privilegemode.setEcholines()
-config = privilegemode.currentConfiguration()
+globalconfigmode = CiscoSw.globalConfigMode()
 
-operation.show(config)
-operation.log(config, r'log\Cisco_Sw_log.txt')
+
+# config = privilegemode.currentConfiguration()
+
+# operation.show(config)
+# operation.log(config, r'log\Cisco_Sw_log.txt')
+config = globalconfigmode.scriptConifig(r'script\hostnamechange.txt')
 

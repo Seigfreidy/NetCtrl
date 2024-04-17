@@ -73,6 +73,21 @@ class Device:
         self.__mode__ = Mode.GlobalConfig
         return globalconfig.GlobalConfigMode(self)
 
+    def interfaceMode(self):
+        if self.__mode__ == Mode.Unknow:
+            self.connection.connect()
+            self.__enterPrivilege__()
+            self.__enterConfig__()
+        elif self.__mode__ == Mode.User:
+            self.__enterPrivilege__()
+            self.__enterConfig__()
+        elif self.__mode__ == Mode.Privilege:
+            self.__enterConfig__()
+        elif self.__mode__ == Mode.GlobalConfig:
+            pass
+        self.__mode__ = Mode.GlobalConfig
+        return globalconfig.GlobalConfigMode(self)
+
     def __quitCurrentMode__(self):
         self.connection.write('quit\n')
     
