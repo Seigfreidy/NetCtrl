@@ -1,9 +1,3 @@
-# import sys
-<<<<<<< HEAD
-# sys.path.append(r'C:\网络文档\个人文件夹\陈一帆\python\NetCtrl')
-=======
-# sys.path.append(r'D:\Git\NetCtrl')
->>>>>>> fa0d7b3555bca013cfca202f03026df87afc93f1
 import NetCtrl.source.device.Cisco.device as device
 import NetCtrl.source.device.Cisco.firewall.firepower.globalconfig as globalconfig
 import NetCtrl.source.device.Cisco.firewall.firepower.privilege as privilege

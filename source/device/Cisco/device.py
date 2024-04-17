@@ -1,6 +1,6 @@
 from enum import Enum
 # import sys
-# sys.path.append(r'C:\网络文档\个人文件夹\陈一帆\python\NetCtrl')
+# sys.path.append(r'D:\Git\NetCtrl')
 # import source.device.device as device
 import NetCtrl.source.device.Cisco.user as user
 import NetCtrl.source.device.Cisco.privilege as privilege
@@ -59,6 +59,21 @@ class Device:
         return privilege.PrivilegeMode(self)
 
     def globalConfigMode(self):
+        if self.__mode__ == Mode.Unknow:
+            self.connection.connect()
+            self.__enterPrivilege__()
+            self.__enterConfig__()
+        elif self.__mode__ == Mode.User:
+            self.__enterPrivilege__()
+            self.__enterConfig__()
+        elif self.__mode__ == Mode.Privilege:
+            self.__enterConfig__()
+        elif self.__mode__ == Mode.GlobalConfig:
+            pass
+        self.__mode__ = Mode.GlobalConfig
+        return globalconfig.GlobalConfigMode(self)
+
+    def interfaceMode(self):
         if self.__mode__ == Mode.Unknow:
             self.connection.connect()
             self.__enterPrivilege__()

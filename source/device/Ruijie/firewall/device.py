@@ -1,5 +1,5 @@
 import sys
-sys.path.append(r'C:\网络文档\个人文件夹\陈一帆\python\NetCtrl')
+sys.path.append(r'D:\Git\NetCtrl')
 import device.Cisco.device as device
 import globalconfig
 

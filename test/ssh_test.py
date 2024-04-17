@@ -1,10 +1,5 @@
 import sys
-sys.path.append(r'C:\网络文档\个人文件夹\陈一帆\python\NetCtrl')
-import time
-from source.user import User
-from source.connection.ssh import SshConnection
-import source.device.device as device
-from source.device.Huawei import interfaceView as interfaceView
+sys.path.append(r'D:\Git')
 
 from NetCtrl.source.user import User
 from NetCtrl.source.connection.ssh import SshConnection

@@ -1,5 +1,5 @@
 import sys
-sys.path.append(r'C:\网络文档\个人文件夹\陈一帆\python')
+sys.path.append(r'D:\Git')
 
 from NetCtrl.source.user import User
 from NetCtrl.source.connection.ssh import SshConnection
@@ -13,5 +13,5 @@ userview = HuaweiSw.userView()
 userview.setEchoLines()
 config = userview.currentConfiguration()
 operation.show(config)
-operation.log(config, r'log\huaweilog.txt')
+operation.log(config, r'log\Huaweilog.txt')
 

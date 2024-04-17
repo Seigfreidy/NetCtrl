@@ -1,0 +1,6 @@
+hostname SW-1
+hostname SW-2
+hostname SW-3
+hostname SW-4
+hostname SW-5
+hostname SW-1
