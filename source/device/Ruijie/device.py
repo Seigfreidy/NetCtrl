@@ -70,8 +70,11 @@ class Device:
         self.connection.write('quit\n')
     
     def __enterPrivilege__(self, password):
-        self.connection.write('enable\n')
-        self.connection.write(password +'\n')
+        if password == 'nan':
+            pass
+        else:
+            self.connection.write('enable\n')
+            self.connection.write(password +'\n')
 
     def __enterConfig__(self):
         self.connection.write('configure terminal\n')

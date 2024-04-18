@@ -6,7 +6,6 @@ from NetCtrl.source.connection.ssh import SshConnection
 import NetCtrl.source.device.Ruijie.device as device
 import NetCtrl.source.operation.fileOP as operation
 
-
 # operation.show(snmpinfo)
 # print(snmpinfo)
 # print(operation.match(snmpinfo, 'no enable service snmp-agent'))
@@ -15,8 +14,7 @@ import NetCtrl.source.operation.fileOP as operation
 
 excel = operation.read_file(r'script\ips.xlsx')
 for index, row in excel.iterrows():  
-    # 访问每一行的数据  
-    ip = row['IP']  
+    ip = row['IP']
     username = row['username']  
     password = row['password']  
     enablepass = row['enablepass']

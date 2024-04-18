@@ -6,7 +6,6 @@ class PrivilegeMode():
     
     def setEcholines(self, num = 0):
         self.device.connection.write('terminal length ' + str(num) + ' \n')
-        print(self.device.connection.read())
     
     def currentConfiguration(self):
         self.device.connection.read()
